@@ -199,7 +199,8 @@ window.ProcessingPage = function ProcessingPage({ formData, onComplete, stats, o
       setActiveActor(null);
       setDone(true);
       onUpdateStats('approved');
-      setTimeout(() => onComplete(), 1200);
+      // FIX TC-07: removed auto-navigate setTimeout so steps 9-11 stay fully
+      // visible. User now clicks "View Result →" manually, same as other paths.
     }
 
     /* ──────────── BRANCH: REJECTED ──────────── */

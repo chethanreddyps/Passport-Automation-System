@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PassportAI — Smart Immigration Clearance</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+
+  <link rel="stylesheet" href="styles/global.css"/>
+  <link rel="stylesheet" href="styles/home.css"/>
+  <link rel="stylesheet" href="styles/applicant.css"/>
+  <link rel="stylesheet" href="styles/processing.css"/>
+  <link rel="stylesheet" href="styles/result.css"/>
+  <link rel="stylesheet" href="styles/officer.css"/>
+
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+
+  <!-- Shared Components -->
+  <script type="text/babel" src="components/Header.js"></script>
+  <script type="text/babel" src="components/ProgressSteps.js"></script>
+  <script type="text/babel" src="components/StepCard.js"></script>
+  <script type="text/babel" src="components/OfficerAlert.js"></script>
+  <script type="text/babel" src="components/StatsBar.js"></script>
+
+  <!-- Pages -->
+  <script type="text/babel" src="pages/HomePage.js"></script>
+  <script type="text/babel" src="pages/ApplicantPage.js"></script>
+  <script type="text/babel" src="pages/ProcessingPage.js"></script>
+  <script type="text/babel" src="pages/ResultPage.js"></script>
+  <script type="text/babel" src="pages/OfficerLoginPage.js"></script>
+  <script type="text/babel" src="pages/OfficerDashboardPage.js"></script>
+
+  <!-- App Entry -->
+  <script type="text/babel" src="App.js"></script>
+</body>
+</html>

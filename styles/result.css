@@ -1,0 +1,270 @@
+/* ================================================
+   PassportAI — Result Page Styles
+   styles/result.css
+   ================================================ */
+
+.result-page {
+  flex: 1;
+  max-width: 760px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 40px 24px;
+  animation: fadeUp 0.4s ease both;
+}
+
+/* ── VERDICT CARD ───────────────────────────────── */
+.verdict-card {
+  border-radius: var(--radius-xl);
+  padding: 44px 40px;
+  text-align: center;
+  margin-bottom: 24px;
+  position: relative;
+  overflow: hidden;
+  animation: scaleIn 0.5s var(--ease-spring) both;
+}
+
+.verdict-card.approved {
+  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+  border: 1.5px solid rgba(34,197,94,0.35);
+}
+
+.verdict-card.suspicious {
+  background: linear-gradient(135deg, #fefce8 0%, #fef9c3 100%);
+  border: 1.5px solid rgba(234,179,8,0.35);
+}
+
+.verdict-card.rejected {
+  background: linear-gradient(135deg, #fff1f2 0%, #fee2e2 100%);
+  border: 1.5px solid rgba(239,68,68,0.35);
+}
+
+.verdict-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.06;
+  background-image: radial-gradient(circle at 50% 50%, currentColor 1px, transparent 1px);
+  background-size: 24px 24px;
+  pointer-events: none;
+}
+
+.verdict-icon-wrap {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 44px;
+  margin: 0 auto 20px;
+}
+
+.verdict-card.approved  .verdict-icon-wrap { background: rgba(34,197,94,0.15); }
+.verdict-card.suspicious .verdict-icon-wrap { background: rgba(234,179,8,0.15); }
+.verdict-card.rejected  .verdict-icon-wrap { background: rgba(239,68,68,0.15); }
+
+.verdict-status-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.verdict-card.approved  .verdict-status-label { color: var(--green-600); }
+.verdict-card.suspicious .verdict-status-label { color: var(--yellow-600); }
+.verdict-card.rejected  .verdict-status-label { color: var(--red-600); }
+
+.verdict-title {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 12px;
+}
+
+.verdict-card.approved  .verdict-title { color: var(--green-600); }
+.verdict-card.suspicious .verdict-title { color: var(--yellow-600); }
+.verdict-card.rejected  .verdict-title { color: var(--red-600); }
+
+.verdict-msg {
+  font-size: 15px;
+  color: var(--text-muted);
+  max-width: 420px;
+  margin: 0 auto;
+  font-weight: 300;
+  line-height: 1.7;
+}
+
+/* ── DETAILS GRID ───────────────────────────────── */
+.result-details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.detail-card {
+  background: var(--bg-white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 22px;
+  box-shadow: var(--shadow-xs);
+  animation: fadeUp 0.4s ease both;
+}
+
+.detail-card:nth-child(1) { animation-delay: 0.1s; }
+.detail-card:nth-child(2) { animation-delay: 0.15s; }
+
+.detail-card-title {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-light);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+  font-family: var(--font-mono);
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.detail-row:last-child { border-bottom: none; }
+
+.detail-key {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.detail-val {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-dark);
+  font-family: var(--font-mono);
+}
+
+/* ── NEXT STEPS ─────────────────────────────────── */
+.next-steps-card {
+  background: var(--bg-white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 22px 24px;
+  margin-bottom: 20px;
+  box-shadow: var(--shadow-xs);
+  animation: fadeUp 0.4s 0.2s ease both;
+}
+
+.next-steps-title {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 14px;
+}
+
+.next-steps-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.next-step-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px;
+  border-radius: var(--radius);
+  background: var(--bg-base);
+}
+
+.next-step-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.next-step-icon.green  { background: var(--green-100); }
+.next-step-icon.blue   { background: var(--blue-100); }
+.next-step-icon.yellow { background: var(--yellow-100); }
+.next-step-icon.red    { background: var(--red-100); }
+
+.next-step-text strong {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 2px;
+}
+
+.next-step-text span {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* ── RESULT ACTIONS ─────────────────────────────── */
+.result-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  animation: fadeUp 0.4s 0.3s ease both;
+}
+
+.btn-result-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--blue-600);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-full);
+  padding: 13px 26px;
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: var(--shadow-blue);
+  transition: all var(--ease);
+  flex: 1;
+  justify-content: center;
+}
+
+.btn-result-primary:hover {
+  background: var(--blue-700);
+  transform: translateY(-1px);
+}
+
+.btn-result-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg-white);
+  color: var(--text-muted);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-full);
+  padding: 11px 22px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all var(--ease);
+}
+
+.btn-result-ghost:hover {
+  border-color: var(--blue-500);
+  color: var(--blue-600);
+  background: var(--blue-50);
+}
+
+@media (max-width: 640px) {
+  .result-details-grid { grid-template-columns: 1fr; }
+  .result-actions { flex-direction: column; }
+  .verdict-card { padding: 30px 20px; }
+}

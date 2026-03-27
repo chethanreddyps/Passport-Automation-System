@@ -6,7 +6,8 @@ window.OfficerDashboardPage = function OfficerDashboardPage({ officer, caseQueue
 
   const [selectedId, setSelectedId]   = useState(null);
   const [filter,     setFilter]       = useState('all');
-  const [notes,      setNotes]        = useState('');
+  // FIX TC-19: store notes per case ID so they survive case switching
+  const [notesMap,   setNotesMap]     = useState({});
   const [actionDone, setActionDone]   = useState({});
 
   /* ── Derived state ── */
@@ -31,9 +32,11 @@ window.OfficerDashboardPage = function OfficerDashboardPage({ officer, caseQueue
   /* ── Action handler ── */
   const handleAction = (action) => {
     if (!selectedCase) return;
-    onUpdateCase(selectedCase.id, action, notes);
+    const caseNotes = notesMap[selectedCase.id] || '';
+    onUpdateCase(selectedCase.id, action, caseNotes);
     setActionDone(prev => ({ ...prev, [selectedCase.id]: action }));
-    setNotes('');
+    // Clear just this case's notes after actioning
+    setNotesMap(prev => ({ ...prev, [selectedCase.id]: '' }));
   };
 
   /* ── AI checks config by AI verdict ── */
@@ -128,7 +131,7 @@ window.OfficerDashboardPage = function OfficerDashboardPage({ officer, caseQueue
                 <div
                   key={c.id}
                   className={`case-row ${selectedId === c.id ? 'selected' : ''}`}
-                  onClick={() => { setSelectedId(c.id); setNotes(''); }}
+                  onClick={() => setSelectedId(c.id)}
                 >
                   <div className="case-row-avatar">
                     {c.aiVerdict === 'suspicious' ? '⚠️' : c.aiVerdict === 'rejected' ? '🚫' : '✅'}
@@ -211,13 +214,25 @@ window.OfficerDashboardPage = function OfficerDashboardPage({ officer, caseQueue
               {/* Officer Notes */}
               {selectedCase.officerStatus === 'pending' && (
                 <div className="notes-card">
-                  <div className="case-info-title">Officer Notes</div>
+                  <div className="case-info-title">
+                    Officer Notes
+                    {/* FIX TC-19: show saved indicator when notes exist */}
+                    {notesMap[selectedCase.id] && (
+                      <span style={{ marginLeft: '8px', fontSize: '10px', color: 'var(--green-600)',
+                        background: 'var(--green-100)', padding: '2px 7px', borderRadius: '99px', fontWeight: '600' }}>
+                        ✓ Saved
+                      </span>
+                    )}
+                  </div>
                   <textarea
                     className="notes-textarea"
-                    placeholder="Add notes about this case (optional)…"
-                    value={notes}
-                    onChange={e => setNotes(e.target.value)}
+                    placeholder="Add notes about this case (optional)… Notes are saved per case and persist while you browse the queue."
+                    value={notesMap[selectedCase.id] || ''}
+                    onChange={e => setNotesMap(prev => ({ ...prev, [selectedCase.id]: e.target.value }))}
                   />
+                  <p style={{ fontSize: '11px', color: 'var(--text-light)', marginTop: '6px' }}>
+                    💾 Notes auto-save as you type and are kept per case.
+                  </p>
                 </div>
               )}
 
